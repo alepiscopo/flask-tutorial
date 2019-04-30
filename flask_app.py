@@ -12,12 +12,15 @@ def hello():
     #else:
     #    return "There is no message!"
 
-@app.route("/api", methods=["POST"])
+@app.route("/api", methods=["GET", "POST"])
 def generate_json(data):
-    #data = {"person_1":{"name":"Alessandro", "surname":"Piscopo"}, "person_2":{"name":"Someone", "surname":"Else"}, "person_3":{"name":"Another", "surname":"One"}, "person_4":{"name":"One", "surname":"More"}}
     if request.method == 'POST':
         print(request.form['person_1'])
         df = pd.DataFrame.from_dict(data, orient="index")
-    return df.to_json(orient="index")
+        return df.to_json(orient="index")
+    else:
+        data = {"person_1":{"name":"Alessandro", "surname":"Piscopo"}, "person_2":{"name":"Someone", "surname":"Else"}, "person_3":{"name":"Another", "surname":"One"}, "person_4":{"name":"One", "surname":"More"}}
+        return jsonify(data)
+
 
     #return jsonify(data)
