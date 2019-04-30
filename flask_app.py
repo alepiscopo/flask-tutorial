@@ -14,4 +14,6 @@ def hello():
 @app.route("/api")
 def generate_json():
     data = {"person_1":{"name":"Alessandro", "surname":"Piscopo"}, "person_2":{"name":"Someone", "surname":"Else"}, "person_3":{"name":"Another", "surname":"One"}, "person_4":{"name":"One", "surname":"More"}}
-    return jsonify(data)
+    df = pd.DataFrame.from_dict(data, orient="index")
+    return df
+    #return jsonify(data)
