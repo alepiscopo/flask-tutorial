@@ -13,9 +13,10 @@ def hello():
     #    return "There is no message!"
 
 @app.route("/api", methods=["GET", "POST"])
-def generate_json(*data):
+def generate_json():
     if request.method == 'POST':
-        print(request.form['person_1'])
+        data = request.get_json(force=True)
+        #print(request.form['person_1'])
         df = pd.DataFrame.from_dict(data, orient="index")
         return df.to_json(orient="index")
     else:
