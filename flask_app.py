@@ -1,5 +1,5 @@
 # flask_app.py
-from flask import Flask
+from flask import Flask, jsonify
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
@@ -10,3 +10,8 @@ def hello():
     #    return message
     #else:
     #    return "There is no message!"
+
+@app.route("/api")
+def generate_json():
+    data = {"person_1":{"name":"Alessandro", "surname":"Piscopo"}}
+    return jsonify(data)
