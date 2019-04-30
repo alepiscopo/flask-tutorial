@@ -6,9 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-db = SQLAlchemy(app)
-__tablename__ = "big_table"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Set debug status
 if config.ENVIRONMENT == 'development':
@@ -20,6 +17,8 @@ else:
 for key, value in config.DB[config.ENVIRONMENT].items():
     app.config[key] = value
 db = SQLAlchemy(app)
+__tablename__ = "big_table"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
